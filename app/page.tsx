@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Header from "./components/header";
+import FormInputs from "./components/form";
 
 function Page() {
     const [formValues, setFormValues] = useState({
@@ -48,90 +49,7 @@ function Page() {
             <div className="min-h-screen p-24 bg-base-100 text-white flex justify-center items-center">
                 <div className="w-1/2">
                     <form className="space-y-4">
-                        <div>
-                            <label htmlFor="site" className="block text-sm font-medium text-gray-300">
-                                Site
-                            </label>
-                            <input
-                                type="text"
-                                id="site"
-                                placeholder="Ex: github.com"
-                                value={formValues.site}
-                                onChange={handleChange}
-                                className="w-full p-1 border rounded-md shadow-sm bg-gray-700 text-white"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="filetype" className="block text-sm font-medium text-gray-300">
-                                Filetype
-                            </label>
-                            <input
-                                type="text"
-                                id="filetype"
-                                placeholder="Ex: pdf"
-                                value={formValues.filetype}
-                                onChange={handleChange}
-                                className="w-full p-1 border rounded-md shadow-sm bg-gray-700 text-white"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="inurl" className="block text-sm font-medium text-gray-300">
-                                In URL
-                            </label>
-                            <input
-                                type="text"
-                                id="inurl"
-                                placeholder="Ex: login"
-                                value={formValues.inurl}
-                                onChange={handleChange}
-                                className="w-full p-1 border rounded-md shadow-sm bg-gray-700 text-white"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="intitle" className="block text-sm font-medium text-gray-300">
-                                In Title
-                            </label>
-                            <input
-                                type="text"
-                                id="intitle"
-                                placeholder="Ex: error 404"
-                                value={formValues.intitle}
-                                onChange={handleChange}
-                                className="w-full p-1 border rounded-md shadow-sm bg-gray-700 text-white"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="exact" className="block text-sm font-medium text-gray-300">
-                                Exact Match
-                            </label>
-                            <input
-                                type="text"
-                                id="exact"
-                                placeholder="Ex: 'machine learning'"
-                                value={formValues.exact}
-                                onChange={handleChange}
-                                className="w-full p-1 border rounded-md shadow-sm bg-gray-700 text-white"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="exclude" className="block text-sm font-medium text-gray-300">
-                                Exclude
-                            </label>
-                            <input
-                                type="text"
-                                id="exclude"
-                                placeholder="Ex: example"
-                                value={formValues.exclude}
-                                onChange={handleChange}
-                                className="w-full p-1 border rounded-md shadow-sm bg-gray-700 text-white"
-                            />
-                        </div>
-
+                        <FormInputs formValues={formValues} handleChange={handleChange} />
                         <button
                             type="button"
                             onClick={buildQuery}
@@ -144,7 +62,7 @@ function Page() {
                     <textarea
                         readOnly
                         value={query}
-                        className="w-full mt-4 p-2 border rounded-md bg-gray-700 text-white"
+                        className="w-full mt-4 p-2 border rounded-md bg-gray-700 text-white textarea textarea-primary"
                         placeholder="Your query will appear here..."
                     ></textarea>
 
