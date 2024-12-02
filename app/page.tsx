@@ -32,7 +32,7 @@ function Page() {
         if (formValues.exclude) newQuery += `-${formValues.exclude} `;
 
         setQuery(newQuery.trim());
-        setErrorMessage(""); // Clear any previous error message
+        setErrorMessage("");
     };
 
     const executeSearch = () => {
@@ -53,7 +53,7 @@ function Page() {
                         <button
                             type="button"
                             onClick={buildQuery}
-                            className="w-full py-1 px-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                            className="btn btn-wide w-full py-1 px-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
                         >
                             Generate Query
                         </button>
@@ -74,7 +74,7 @@ function Page() {
 
                     <button
                         onClick={executeSearch}
-                        className="mt-4 w-full py-1 px-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                        className="btn btn-wide mt-4 w-full py-1 px-2 bg-blue-600 text-white rounded-md hover:bg-blue-800"
                     >
                         Search on Google
                     </button>
