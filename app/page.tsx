@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Header from "./components/header";
 import FormInputs from "./components/form";
 
-function Page() {
+const Page = () => {
     const [formValues, setFormValues] = useState({
         site: "",
         filetype: "",
@@ -18,20 +18,20 @@ function Page() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
-        setFormValues({ ...formValues, [id]: value });
+        setFormValues(prevValues => ({ ...prevValues, [id]: value }));
     };
 
     const buildQuery = () => {
-        let newQuery = "";
+        const queryParts = [
+            formValues.site && `site:${formValues.site}`,
+            formValues.filetype && `filetype:${formValues.filetype}`,
+            formValues.inurl && `inurl:${formValues.inurl}`,
+            formValues.intitle && `intitle:${formValues.intitle}`,
+            formValues.exact && `"${formValues.exact}"`,
+            formValues.exclude && `-${formValues.exclude}`,
+        ].filter(Boolean);
 
-        if (formValues.site) newQuery += `site:${formValues.site} `;
-        if (formValues.filetype) newQuery += `filetype:${formValues.filetype} `;
-        if (formValues.inurl) newQuery += `inurl:${formValues.inurl} `;
-        if (formValues.intitle) newQuery += `intitle:${formValues.intitle} `;
-        if (formValues.exact) newQuery += `"${formValues.exact}" `;
-        if (formValues.exclude) newQuery += `-${formValues.exclude} `;
-
-        setQuery(newQuery.trim());
+        setQuery(queryParts.join(" ").trim());
         setErrorMessage("");
     };
 
@@ -82,6 +82,6 @@ function Page() {
             </div>
         </>
     );
-}
+};
 
 export default Page;

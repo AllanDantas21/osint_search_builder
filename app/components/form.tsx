@@ -13,51 +13,28 @@ interface FormInputsProps {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+const inputFields = [
+    { id: "site", label: "Site", placeholder: "Ex: github.com" },
+    { id: "filetype", label: "Filetype", placeholder: "Ex: pdf" },
+    { id: "inurl", label: "In URL", placeholder: "Ex: login" },
+    { id: "intitle", label: "In Title", placeholder: "Ex: error 404" },
+    { id: "exact", label: "Exact Match", placeholder: "Ex: 'machine learning'" },
+    { id: "exclude", label: "Exclude", placeholder: "Ex: example" },
+];
+
 const FormInputs: React.FC<FormInputsProps> = ({ formValues, handleChange }) => {
     return (
         <div className="grid grid-cols-3 gap-4">
-            <InputField
-                id="site"
-                label="Site"
-                placeholder="Ex: github.com"
-                value={formValues.site}
-                handleChange={handleChange}
-            />
-            <InputField
-                id="filetype"
-                label="Filetype"
-                placeholder="Ex: pdf"
-                value={formValues.filetype}
-                handleChange={handleChange}
-            />
-            <InputField
-                id="inurl"
-                label="In URL"
-                placeholder="Ex: login"
-                value={formValues.inurl}
-                handleChange={handleChange}
-            />
-            <InputField
-                id="intitle"
-                label="In Title"
-                placeholder="Ex: error 404"
-                value={formValues.intitle}
-                handleChange={handleChange}
-            />
-            <InputField
-                id="exact"
-                label="Exact Match"
-                placeholder="Ex: 'machine learning'"
-                value={formValues.exact}
-                handleChange={handleChange}
-            />
-            <InputField
-                id="exclude"
-                label="Exclude"
-                placeholder="Ex: example"
-                value={formValues.exclude}
-                handleChange={handleChange}
-            />
+            {inputFields.map(({ id, label, placeholder }) => (
+                <InputField
+                    key={id}
+                    id={id}
+                    label={label}
+                    placeholder={placeholder}
+                    value={formValues[id as keyof typeof formValues]}
+                    handleChange={handleChange}
+                />
+            ))}
         </div>
     );
 };
